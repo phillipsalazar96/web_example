@@ -1,25 +1,66 @@
 <html>
 <head>
-  </head>
-  <body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">To do Page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/todolist">To Do List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+
+<main role="main" class="container">
+  <h2 class="jumbotron"> To Do List</h2>
     <form action = "/todolist" method = "POST">
-      <p>Name <input type = "text" name = "name" /></p>
-      <input type="hidden" name="data" value="0">
-            <p><input type = "submit" value = "submit" /></p>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Add to list</label>
+    <input type="text" name="item" class="form-control" placeholder="Enter email">
+
+  </div>
+<input type="hidden" name="data" value="0">
+  <button type="submit" class="btn btn-primary">Add item</button>
+</form>
+
+
+
+  <ul class="list-group">
+    {% for row in data %}
+        <li class="list-group-item">{{row}}</li>
+    {% endfor %}
+  </ul>
+
+
+  <br>
+
+    <form action="/todolist" method="POST">
+      <input type="hidden" name="data" value="1">
+      <input class="btn btn-danger" type="submit" value="Delete All" >
     </form>
 
 
-
-      {% for row in data %}
-
-            <p>{{row}}</p>
-
-      {% endfor %}
-
-      <form action="/todolist" method="POST">
-        <input type="hidden" name="data" value="1">
-        <input type="submit" value="Delete All" >
-      </form>
-
-    </body>
+</main><!-- /.container -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>

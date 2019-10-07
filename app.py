@@ -19,24 +19,31 @@ def todolist():
    if request.method == 'POST':
         delete = request.form.get('data')
         if delete == '0':
-            result = request.form.get('name')
+            result = request.form.get('item')
             myfile = open("data.txt", "a")
             myfile.write(result + '\n')
             myfile.close()
 
         elif delete == '1':
             myfile = open("data.txt", "w").close()
+        # elif delete == '2':
+        #     result = request.form.get('name')
+        #     myfile = open("data.txt", "a")
+        #     myfile.write(result + '\n')
+        #     myfile.close()
 
         myfile = open("data.txt", "r")
         result = myfile.read()
         result = result.split('\n')
+        result.remove('')
         return render_template("todolist.html",data = result)
 
    elif request.method == 'GET':
-       myfile = open("data.txt", "r")
-       result = myfile.read()
-       result = result.split('\n')
-       return render_template("todolist.html",data = result)
+        myfile = open("data.txt", "r")
+        result = myfile.read()
+        result = result.split('\n')
+        result.remove('')
+        return render_template("todolist.html",data = result)
 
 # @app.route('/result',methods = ['POST', 'GET'])
 # def result():
